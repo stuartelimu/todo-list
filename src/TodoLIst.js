@@ -11,6 +11,7 @@ class TodoList extends Component {
 
     this.addItem = this.addItem.bind(this);
     this.handleInput = this.handleInput.bind(this);
+    this.deleteItem = this.deleteItem.bind(this);
   }
 
   componentDidUpdate() {
@@ -38,6 +39,14 @@ class TodoList extends Component {
     });
   }
 
+  deleteItem(key) {
+    const filteredItems = this.state.items.filter(item => {
+      return item.key !== key
+    })
+
+    this.setState({items: filteredItems});
+  }
+
   render() {
     return (
       <div className="todoListMain">
@@ -52,7 +61,7 @@ class TodoList extends Component {
             <button type="submit">Add</button>
           </form>
         </div>
-        <TodoItems entries={this.state.items} />
+        <TodoItems entries={this.state.items} deleteItem={this.deleteItem} />
       </div>
     );
   }
