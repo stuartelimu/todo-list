@@ -9,7 +9,7 @@ class TodoItems extends Component {
 
   createTasks(item) {
     return (
-      <li key={item.key} onClick={() => this.props.deleteItem(item.key)}>
+      <li key={item.key} onClick={e => this.props.editItem(e, item.key)}>
         {item.text}
       </li>
     );
